@@ -1,5 +1,7 @@
+import asyncio
+
 import strawberry
-from typing import List, Annotated, Optional
+from typing import List, Annotated, Optional, AsyncGenerator
 from api.services import  PokemonService
 from api.repository import PokemonRepository
 from strawberry.field_extensions import InputMutationExtension
@@ -16,8 +18,10 @@ pokemon_service: PokemonService = PokemonService(PokemonRepository())
 @strawberry.type
 class Query:
 
-    pokemons: List[PokemonType] = strawberry.field(resolver=pokemon_service.get_pokemons)
+    pokemons: PokemonResponse = strawberry.field(resolver=pokemon_service.get_pokemons_with_pagination)
     pokemon_by_id: Optional[PokemonType] = strawberry.field(resolver=pokemon_service.get_pokemon_by_id)
+    pokemons_by_name: List[PokemonType] = strawberry.field(resolver=pokemon_service.get_pokemon_by_name)
+
 
 
 @strawberry.type

@@ -8,9 +8,18 @@ class PokemonRepository:
 
         return db_session.query(Pokemon).all()
 
+    def get_pokemons_with_pagination(self, id: int) -> List[Pokemon]:
+
+        return db_session.query(Pokemon).filter(Pokemon.id >= id).all()
+
+
     def get_pokemon_by_id(self, id: int) -> Optional[Pokemon]:
 
         return db_session.query(Pokemon).filter(Pokemon.id == id).first()
+
+    def get_pokemon_by_name(self, pattern: str) -> List[Pokemon]:
+
+        return db_session.query(Pokemon).filter(Pokemon.name.startswith(pattern))
 
     def add_pokemon(self, pokemon: Pokemon):
 
