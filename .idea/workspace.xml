@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ae752f3-9198-4819-b498-e0f69ef5ac0a" name="Changes" comment="Add PokemonAttribute entity + mutation">
+    <list default="true" id="6ae752f3-9198-4819-b498-e0f69ef5ac0a" name="Changes" comment="update metadata">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/dto.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/dto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/services.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +84,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745241241451</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update metadata">
+      <option name="closed" value="true" />
+      <created>1745245134181</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1745245134181</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,17 +110,7 @@
     <MESSAGE value="Start project learning graphql api" />
     <MESSAGE value="Add cursor pagination for pokemons" />
     <MESSAGE value="Add PokemonAttribute entity + mutation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add PokemonAttribute entity + mutation" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/api/services.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="update metadata" />
+    <option name="LAST_COMMIT_MESSAGE" value="update metadata" />
   </component>
 </project>

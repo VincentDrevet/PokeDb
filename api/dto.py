@@ -1,5 +1,5 @@
-from typing import Optional, List
-
+from typing import Optional, List, Iterable
+from strawberry import relay, Info
 import strawberry
 
 @strawberry.type
