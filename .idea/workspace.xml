@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ae752f3-9198-4819-b498-e0f69ef5ac0a" name="Changes" comment="Start project learning graphql api">
-      <change afterPath="$PROJECT_DIR$/api/utils.py" afterDir="false" />
+    <list default="true" id="6ae752f3-9198-4819-b498-e0f69ef5ac0a" name="Changes" comment="Add cursor pagination for pokemons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/dto.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/dto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/schema.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/services.py" afterDir="false" />
@@ -35,15 +35,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.schema.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.schema.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api" />
@@ -72,11 +72,42 @@
       <option name="project" value="LOCAL" />
       <updated>1745155996086</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add cursor pagination for pokemons">
+      <option name="closed" value="true" />
+      <created>1745168566998</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745168566998</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Start project learning graphql api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start project learning graphql api" />
+    <MESSAGE value="Add cursor pagination for pokemons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add cursor pagination for pokemons" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/services.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, Column, Integer, String, Boolean
-from sqlalchemy.orm import sessionmaker, scoped_session, declarative_base
+from sqlalchemy import create_engine, Column, Integer, String, Boolean, Table, ForeignKey
+from sqlalchemy.orm import sessionmaker, scoped_session, declarative_base, relationship
 import os
 
 
@@ -15,6 +15,13 @@ db_session = scoped_session(
 
 Base = declarative_base()
 
+pokemon_pokemonAttribute_association = Table(
+    'Pokemon_pokemonAttribute',
+    Base.metadata,
+    Column('pokemon_id', Integer, ForeignKey("Pokemon.id")),
+    Column('pokemon_attribute_id', Integer, ForeignKey("PokemonAttribute.id"))
+)
+
 class Pokemon(Base):
 
     __tablename__ = "Pokemon"
@@ -24,3 +31,12 @@ class Pokemon(Base):
     hp = Column(Integer)
     generation = Column(Integer)
     legendary = Column(Boolean)
+    types = relationship('PokemonAttribute', secondary=pokemon_pokemonAttribute_association, back_populates='pokemons')
+
+
+class PokemonAttribute(Base):
+    __tablename__ = "PokemonAttribute"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    pokemons = relationship('Pokemon', secondary=pokemon_pokemonAttribute_association, back_populates='types')

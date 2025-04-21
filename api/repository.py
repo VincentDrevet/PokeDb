@@ -29,3 +29,18 @@ class PokemonRepository:
             return pokemon
         except Exception as e:
             raise e
+
+class PokemonAttributeRepository:
+
+    def add_pokemon_attribute(self, pokemon_attribute: PokemonAttribute):
+
+        try:
+            db_session.add(pokemon_attribute)
+            db_session.commit()
+            return pokemon_attribute
+        except Exception as e:
+            raise e
+
+    def get_pokemon_attribute(self, index: int) -> List[PokemonAttribute]:
+
+        return db_session.query(PokemonAttribute).filter(PokemonAttribute.id >= index).all()

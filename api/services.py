@@ -1,6 +1,6 @@
-from api.repository import  PokemonRepository
+from api.repository import PokemonRepository, PokemonAttributeRepository
 from typing import Optional, List
-from api.models import Pokemon
+from api.models import Pokemon, PokemonAttribute
 from api.dto import *
 from api.utils import *
 
@@ -56,10 +56,48 @@ class PokemonService():
 
         return PokemonResponse(pokemons=pokemons, pagination=PageMeta(next_page=None))
 
-
-
     def add_pokemon(self, name: str, hp: int, generation: int, legendary: bool) -> PokemonType:
 
         pokemon = self.__pokemon_repository.add_pokemon(Pokemon(name=name, hp=hp, generation=generation, legendary=legendary))
 
         return self.__convert_to_graphql_type(pokemon)
+
+
+
+class PokemonAttributeService():
+
+    def __convert_to_graphql_type(self, entity: PokemonAttribute) -> PokemonAttributeType:
+
+        return PokemonAttributeType(id=entity.id, name=entity.name)
+
+    def __init__(self, pokemon_attribute_repository: PokemonAttributeRepository):
+        self.__pokemon_attribute_repository = pokemon_attribute_repository
+
+
+    def add_pokemon_attribute(self, name: str) -> PokemonAttributeType:
+
+        pokemon_attribute = self.__pokemon_attribute_repository.add_pokemon_attribute(PokemonAttribute(name=name))
+
+        return self.__convert_to_graphql_type(pokemon_attribute)
+
+    def get_pokemon_attribute_with_pagination(self, page_size: int, cursor: str = None) -> PokemonAttributeResponse:
+
+        pokemon_attribute_id = 0
+
+        if cursor is not None:
+            pokemon_attribute_id = decode_cursor(cursor)
+
+        attributes = self.__pokemon_attribute_repository.get_pokemon_attribute(pokemon_attribute_id)
+
+        attributes = attributes[: page_size + 1]
+
+        if len(attributes) > page_size:
+
+            last_attributes = attributes.pop(-1)
+            cursor = encode_cursor(last_attributes.id)
+
+            return PokemonAttributeResponse(attributes=attributes, pagination=PageMeta(next_page=cursor))
+
+        return PokemonAttributeResponse(attributes=attributes, pagination=PageMeta(next_page=None))
+
+
