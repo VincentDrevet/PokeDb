@@ -6,12 +6,13 @@ from api.utils import *
 
 class PokemonService():
 
-    def __init__(self, pokemon_repository: PokemonRepository):
+    def __init__(self, pokemon_repository: PokemonRepository, pokemon_attribute_repository: PokemonAttributeRepository):
         self.__pokemon_repository = pokemon_repository
+        self.__pokemon_attribute_repository = pokemon_attribute_repository
 
     def __convert_to_graphql_type(self, entity: Pokemon) -> PokemonType:
 
-        return PokemonType(id=entity.id, name=entity.name, hp=entity.hp, generation=entity.generation, legendary=entity.legendary)
+        return PokemonType(id=entity.id, name=entity.name, hp=entity.hp, generation=entity.generation, legendary=entity.legendary, types=entity.types)
 
     #def get_pokemons(self) -> List[PokemonType]:
 
@@ -50,15 +51,19 @@ class PokemonService():
             last_pokemon = pokemons.pop(-1)
             cursor = encode_cursor(last_pokemon.id)
 
-            return PokemonResponse(pokemons=pokemons, pagination=PageMeta(next_page=cursor))
+            return PokemonResponse(pokemons=pokemons, metadata=PageMeta(next_page=cursor, count=self.__pokemon_repository.count()))
 
         # If number of pokemons in list is lesser or equal to the limit, it means that they are no more pages.
 
-        return PokemonResponse(pokemons=pokemons, pagination=PageMeta(next_page=None))
+        return PokemonResponse(pokemons=pokemons, metadata=PageMeta(next_page=None, count=self.__pokemon_repository.count()))
 
-    def add_pokemon(self, name: str, hp: int, generation: int, legendary: bool) -> PokemonType:
+    def add_pokemon(self, name: str, hp: int, generation: int, legendary: bool, types: List[int]) -> PokemonType:
 
-        pokemon = self.__pokemon_repository.add_pokemon(Pokemon(name=name, hp=hp, generation=generation, legendary=legendary))
+        pokemon = Pokemon(name=name, hp=hp, generation=generation, legendary=legendary)
+
+        [pokemon.types.append(self.__pokemon_attribute_repository.get_pokemon_attribute_by_id(t)) for t in types]
+
+        pokemon = self.__pokemon_repository.add_pokemon(pokemon)
 
         return self.__convert_to_graphql_type(pokemon)
 
@@ -96,8 +101,11 @@ class PokemonAttributeService():
             last_attributes = attributes.pop(-1)
             cursor = encode_cursor(last_attributes.id)
 
-            return PokemonAttributeResponse(attributes=attributes, pagination=PageMeta(next_page=cursor))
+            return PokemonAttributeResponse(attributes=attributes, metadata=PageMeta(next_page=cursor, count=self.__pokemon_attribute_repository.count()))
 
-        return PokemonAttributeResponse(attributes=attributes, pagination=PageMeta(next_page=None))
+        return PokemonAttributeResponse(attributes=attributes, metadata=PageMeta(next_page=None, count=self.__pokemon_attribute_repository.count()))
 
 
+    def get_pokemon_attribute_by_id(self, id: int) -> Optional[PokemonAttributeType]:
+
+        return self.__convert_to_graphql_type(self.__pokemon_attribute_repository.get_pokemon_attribute_by_id(id))

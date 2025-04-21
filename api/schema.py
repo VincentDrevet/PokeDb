@@ -8,7 +8,7 @@ from api.dto import *
 
 
 
-pokemon_service: PokemonService = PokemonService(PokemonRepository())
+pokemon_service: PokemonService = PokemonService(PokemonRepository(), PokemonAttributeRepository())
 pokemon_attribute_service: PokemonAttributeService = PokemonAttributeService(PokemonAttributeRepository())
 
 @strawberry.type
@@ -19,6 +19,7 @@ class Query:
     pokemons_by_name: List[PokemonType] = strawberry.field(resolver=pokemon_service.get_pokemon_by_name)
 
     pokemon_attributes: PokemonAttributeResponse = strawberry.field(resolver=pokemon_attribute_service.get_pokemon_attribute_with_pagination)
+    pokemon_attribute_by_id: Optional[PokemonAttributeType] = strawberry.field(resolver=pokemon_attribute_service.get_pokemon_attribute_by_id)
 
 
 

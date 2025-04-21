@@ -30,6 +30,10 @@ class PokemonRepository:
         except Exception as e:
             raise e
 
+    def count(self) -> int:
+
+        return db_session.query(Pokemon).count()
+
 class PokemonAttributeRepository:
 
     def add_pokemon_attribute(self, pokemon_attribute: PokemonAttribute):
@@ -44,3 +48,12 @@ class PokemonAttributeRepository:
     def get_pokemon_attribute(self, index: int) -> List[PokemonAttribute]:
 
         return db_session.query(PokemonAttribute).filter(PokemonAttribute.id >= index).all()
+
+    def get_pokemon_attribute_by_id(self, id: int) -> Optional[PokemonAttribute]:
+
+        return db_session.query(PokemonAttribute).filter(PokemonAttribute.id == id).first()
+
+
+    def count(self) -> int:
+
+        return db_session.query(PokemonAttribute).count()
